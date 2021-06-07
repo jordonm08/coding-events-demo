@@ -26,17 +26,33 @@ public class Event {
 
     private EventType type;
 
-    public Event(String name, String description, String contactEmail, EventType type) {
+    @NotBlank(message = "Must have location.")
+    @Size(max = 500, message = "Description too long!")
+    private String location;
+
+
+
+
+    public Event(String name, String description, String contactEmail, EventType type, String location) {
         this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
         this.type = type;
+        this.location = location;
     }
 
     public Event() {
         this.id = nextId;
         nextId++;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getName() {
